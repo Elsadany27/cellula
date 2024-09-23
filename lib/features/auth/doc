@@ -1,0 +1,12 @@
+- Auth file : that used to sign up or login in the app that divided to two files ==>
+Sign up file : used to create new account
+login : used to login in the app if user have account
+
+- To organized files , I used clean arch:
+  Data layer :
+  used repoimpl to implement signup & login functions,
+  Domain Layer:
+  used repo to declare signup & login functions (prototypes)
+  Presentation Layer:
+  used to create UI for the app & create custom widgets
+
