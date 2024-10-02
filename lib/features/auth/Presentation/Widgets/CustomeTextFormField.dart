@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomeTextFormField extends StatelessWidget {
-   CustomeTextFormField({super.key,this.controller});
+   CustomeTextFormField({super.key,this.controller,this.text});
    TextEditingController? controller;
+   String? text;
   @override
   Widget build(BuildContext context) {
     return  TextFormField(
@@ -14,6 +15,8 @@ class CustomeTextFormField extends StatelessWidget {
         }
       },
       decoration: InputDecoration(
+        hintText:text ,
+        hintStyle: TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color(0xff23314C),
         border: OutlineInputBorder(

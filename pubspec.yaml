@@ -46,6 +46,7 @@ dependencies:
   firebase_storage:
   dio:
   flutter_inappwebview: ^5.0.0
+  location_picker_flutter_map: ^3.0.1
 
 
 

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'features/Home/Presentation/Screens/provider/HomeController.dart';
 import 'features/Onboarding/Presentaion/Screens/firstscreen.dart';
 import 'features/auth/Presentation/Provider/AuthController.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthController(),),
+        ChangeNotifierProvider(create: (context) => HomeController(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
