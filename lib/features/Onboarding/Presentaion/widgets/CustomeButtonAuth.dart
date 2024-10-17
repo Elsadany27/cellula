@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomeButtonAuth extends StatelessWidget {
-   CustomeButtonAuth({super.key,required this.ontap,this.text,this.baclground,this.textcolor,this.top,this.bottom,this.right,this.left});
+   CustomeButtonAuth({super.key,required this.ontap,this.text,this.baclground,this.textcolor,this.top,this.bottom,this.right,this.left,});
   String? text;
   final VoidCallback ontap;
   Color? textcolor,baclground;

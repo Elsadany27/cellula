@@ -9,63 +9,142 @@ import '../../Data/RepoImp/AuthRepoImp/AuthRepoImp.dart';
 import '../Widgets/CustomeTextFormField.dart';
 import '../Widgets/CustomeTextFormFieldPass.dart';
 import 'Signup.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import the ScreenUtil package
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  AuthRepoImp authrepoimp=AuthRepoImp();
-  Appconstants constantss=Appconstants();
-  GlobalKey<FormState> authloginkey=GlobalKey();
-  TextEditingController fullname=TextEditingController();
-  TextEditingController email=TextEditingController();
-  TextEditingController password=TextEditingController();
+  AuthRepoImp authrepoimp = AuthRepoImp();
+  Appconstants constantss = Appconstants();
+  GlobalKey<FormState> authloginkey = GlobalKey();
+  TextEditingController fullname = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: authloginkey,
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10.w), // Changed to responsive padding
           height: double.infinity,
           width: double.infinity,
           color: Color(0xff001334),
-          child: ListView(children: [
-            
-            //text
-            SizedBox(height: 30,),
-            Center(child: Text("Login",style: TextStyle(fontSize: 40,color: Colors.white,fontWeight: FontWeight.bold),)),
-            Center(child: Text("Welcome Back ..!",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w400),)),SizedBox(height: 130,),
+          child: ListView(
+            children: [
+              // Title text
+              SizedBox(height: 30.h),
+              Center(
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 40.sp, // Responsive font size
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Welcome Back ..!",
+                  style: TextStyle(
+                    fontSize: 15.sp, // Responsive font size
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              SizedBox(height: 130.h),
 
-            //form
-            Text("Full Name",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),SizedBox(height: 5,),
-            CustomeTextFormField(controller: fullname,),SizedBox(height: 20,),
-            Text("Email",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),SizedBox(height: 5,),
-            CustomeTextFormField(controller: email,),SizedBox(height: 20,),
-            Text("Password",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),SizedBox(height: 5,),
-            CustomeTextFormFieldPass(controller: password,),
-           
-           //forget password
-            Container(
-              margin: EdgeInsets.only(bottom: 20),
-              alignment: Alignment.bottomRight,
-              child: TextButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),));},
-                child:Text("Forget Your Password ?",style: TextStyle(color:Color(0xff014BB4),fontSize:12),),),
-            ),
-            
-            //button
-            Consumer<AuthController>(
-  builder: (context, provider, child) {
-  return CustomeButtonAuth(ontap: (){
-              authloginkey.currentState!.validate();
-              authrepoimp.Login(email.text.trim(), password.text.trim(), context);
-              provider.username=fullname.text.trim();
-            },textcolor:Colors.white,baclground: Appconstants.color,text: "Login",left: 20,right: 20,top: 10,bottom: 10,);
-  },
-),
+              // Form fields
+              Text(
+                "Full Name",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.sp, // Responsive font size
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 5.h), // Added responsive spacing
+              CustomeTextFormField(controller: fullname),
+              SizedBox(height: 20.h),
+              Text(
+                "Email",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.sp, // Responsive font size
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              CustomeTextFormField(controller: email),
+              SizedBox(height: 20.h),
+              Text(
+                "Password",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.sp, // Responsive font size
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              CustomeTextFormFieldPass(controller: password),
 
-            //don't have account
-             TextButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage(),));},
-                child:Text("Don't Have An Account ?",style: TextStyle(color:Color(0xff014BB4),fontSize:12),),),
-          ],),
+              // Forget password link
+              Container(
+                margin: EdgeInsets.only(bottom: 20.h), // Responsive margin
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                  onPressed: () {
+                    // Assuming you wish to navigate to a password recovery screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(), // This should be your recovery page
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Forget Your Password?",
+                    style: TextStyle(color: Color(0xff014BB4), fontSize: 12.sp), // Responsive font size
+                  ),
+                ),
+              ),
+
+              // Login button
+              Consumer<AuthController>(
+                builder: (context, provider, child) {
+                  return CustomeButtonAuth(
+                    ontap: () {
+                      authloginkey.currentState!.validate();
+                      authrepoimp.Login(email.text.trim(), password.text.trim(), context);
+                      provider.username = fullname.text.trim();
+                      provider.email = email.text.trim();
+                    },
+                    textcolor: Colors.white,
+                    baclground: Appconstants.color,
+                    text: "Login",
+                    left: 20.w,
+                    right: 20.w,
+                    top: 10.h,
+                    bottom: 10.h,
+                  );
+                },
+              ),
+
+              // Link to signup page
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SignupPage()),
+                  );
+                },
+                child: Text(
+                  "Don't Have An Account?",
+                  style: TextStyle(color: Color(0xff014BB4), fontSize: 12.sp), // Responsive font size
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

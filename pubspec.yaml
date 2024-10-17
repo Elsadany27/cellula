@@ -47,6 +47,10 @@ dependencies:
   dio:
   flutter_inappwebview: ^5.0.0
   location_picker_flutter_map: ^3.0.1
+  http:
+  flutter_bloc: 
+  flutter_screenutil: ^5.9.3
+  device_preview:
 
 
 

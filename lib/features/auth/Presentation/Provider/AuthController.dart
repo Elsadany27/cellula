@@ -11,5 +11,5 @@ class AuthController extends ChangeNotifier{
     }notifyListeners();
   }
   //user name
-  String? username;
+  String? username,email;
 }
